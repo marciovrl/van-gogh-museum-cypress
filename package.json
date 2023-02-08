@@ -1,0 +1,25 @@
+{
+  "name": "van-gogh-museum-cypress",
+  "version": "1.0.0",
+  "description": "Some cypress tests for the Van Gogh museum website",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:chrome": "cypress run --browser chrome --headless --reporter mochawesome",
+    "cypress:firefox": "cypress run --browser firefox --headless --reporter mochawesome"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marciovrl/van-gogh-museum-cypress.git"
+  },
+  "author": "Marcio Lemos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marciovrl/van-gogh-museum-cypress/issues"
+  },
+  "homepage": "https://github.com/marciovrl/van-gogh-museum-cypress#readme",
+  "devDependencies": {
+    "cypress": "^12.5.1",
+    "mochawesome": "^7.1.3"
+  }
+}
