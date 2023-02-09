@@ -1,3 +1,6 @@
+import collectionPage from "../pages/collection"
+import homePage from "../pages/home"
+
 const paintingTitle = 'Het Gele Huis'
 
 describe('Test automation assignment', () => {
@@ -6,7 +9,7 @@ describe('Test automation assignment', () => {
     })
 
     it(`As a user I must navigate the collection page`, () => {
-        cy.goToCollectionPage()
+        homePage.goToCollectionPage()
 
         cy.url().should('include', '/collection')
         cy.title().should('include', 'Collection - Van Gogh Museum')
@@ -14,29 +17,29 @@ describe('Test automation assignment', () => {
 
     context('be on the collection page', () => {
         beforeEach(() => {
-            cy.goToCollectionPage()
+            homePage.goToCollectionPage()
         })
 
         it(`As a user I must view the paintings as my search "${paintingTitle}"`, () => {
-            cy.filterPainting(paintingTitle)
+            collectionPage.searchItem(paintingTitle)
 
-            cy.get('.collection-art-object-list-results').contains('3')
+            collectionPage.elements.resultLabel().contains('3')
         })
 
         it(`As a user I must view details of the painting I selected`, () => {
-            cy.filterPainting(paintingTitle)
-            cy.selectItemByOrderInList(1) //select the first item
+            collectionPage.searchItem(paintingTitle)
+            collectionPage.selectItemByOrderInList(1) //select the first item
 
             cy.get('.definition-list')
                 .within(() => {
-                    cy.get('dt').eq(0).contains('F-number')
-                    cy.get('dd').eq(0).contains('F1350r')
+                    collectionPage.elements.detailsItemdt().eq(0).contains('F-number')
+                    collectionPage.elements.detailsItemdd().eq(0).contains('F1350r')
 
-                    cy.get('dt').eq(1).contains('JH-number')
-                    cy.get('dd').eq(1).contains('JH0976')
+                    collectionPage.elements.detailsItemdt().eq(1).contains('JH-number')
+                    collectionPage.elements.detailsItemdd().eq(1).contains('JH0976')
 
-                    cy.get('dt').eq(2).contains('Object number')
-                    cy.get('dd').eq(2).contains('d0025V1962r')
+                    collectionPage.elements.detailsItemdt().eq(2).contains('Object number')
+                    collectionPage.elements.detailsItemdd().eq(2).contains('d0025V1962r')
                 })
         })
     })
