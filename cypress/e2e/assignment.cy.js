@@ -18,8 +18,13 @@ describe('Test automation assignment', () => {
         })
 
         it(`As a user I must view the paintings as my search "${paintingTitle}"`, () => {
+            cy.intercept('GET', '/en/collection/').as('searchCollection')
             cy.filterPainting(paintingTitle)
 
+            cy.wait('@searchCollection').then(({ response }) => {
+                expect(response.statusCode).to.eql(200)
+                expect(response.body.totalResults).to.greaterThan(700)
+            })
             cy.get('.collection-art-object-list-results').contains('3')
         })
 
